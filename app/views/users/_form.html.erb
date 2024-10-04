@@ -1,0 +1,31 @@
+<div class="col-9 col-md-3 no-padding">
+  <%= form_with(model: user, local: true) do |form| %>
+
+    <div>
+      <%= form.label :name, "名前", class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+
+    <div>
+      <%= form.label :email, "メールアドレス", class: "form-label" %>
+      <%= form.email_field :email, class: "form-control" %>
+    </div>
+
+    <div>
+      <%= form.label :password, "パスワード", class: "form-label" %>
+      <%= form.password_field :password, class: "form-control" %>
+    </div>
+
+    <div>
+      <%= form.label :password_confirmation, "パスワード(確認用)", class: "form-label" %>
+      <%= form.password_field :password_confirmation, class: "form-control" %>
+    </div>
+
+    <div class="register_btn">
+      <%= form.submit "登録", class: "btn btn-outline-dark" %>
+    </div>
+
+  <% end %>
+</div>
+
+

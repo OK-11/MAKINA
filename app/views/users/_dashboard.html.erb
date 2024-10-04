@@ -1,0 +1,27 @@
+<div class="mt-4 w-100">
+  <div class="underline">
+    <div class="user_project_name">
+      <div><%=project.name%>・<%=user.name%></div>
+    </div>
+  </div>
+
+  <div class="underline">
+    <div class="user_dashboard">
+      <% if dashboard_status == 0 %>
+        <div class="dashboard_open">ダッシュボード</div>
+        <% project_missions.each do |project_mission| %>
+          <div class="dashboard_close"><%= project_mission.mission.name %></div>
+        <% end %>
+      <% else %>
+        <div class="dashboard_close">ダッシュボード</div>
+        <% project_missions.each do |project_mission| %>
+          <% if dashboard_status == project_mission.id %>
+            <div class="dashboard_open"><%= project_mission.mission.name %></div>
+          <% else %>
+            <div class="dashboard_close"><%= project_mission.mission.name %></div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

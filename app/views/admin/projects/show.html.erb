@@ -1,0 +1,34 @@
+<h1><%= @project.name %></h1>
+
+<%= link_to "プロジェクト編集", edit_admin_user_project_path(@user,@project) %>
+<%= link_to "プロジェクト削除", admin_user_project_path(@user,@project), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } %>
+<%= link_to "大タスクを紐付ける", new_admin_user_project_project_mission_path(@user,@project) %>
+
+
+<% if @project_missions.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>順番</th>
+        <th>大タスク名</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @project_missions.each do |project_mission| %>
+        <tr>
+          <td><%= project_mission.position %></td>
+          <td><%= link_to project_mission.mission.name , admin_user_project_project_mission_path(@user,@project,project_mission)%></td>
+          <td><%= project_mission.status %><%= render "changeStatusForm", user: @user, project: @project, project_mission: project_mission %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <!-- Note: @project_missions[0]に特に意味はない、project_missionでdestroyを動かしたいだけ -->
+    <%= link_to "紐付けを解く", admin_user_project_project_mission_path(@user,@project,@project_missions[0]), method: :delete, data: { confirm: "本当に解いてもよろしいですか？" } %>
+  </table>
+<% else %>
+  <p>大タスクが紐付いていません</p>
+<% end %>
+
+  
+  

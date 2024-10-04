@@ -1,0 +1,27 @@
+
+<h1>大タスク一覧</h1>
+
+<%= link_to "大タスク作成" , new_admin_mission_path %>
+
+
+<% if @missions.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>大タスク名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @missions.each do |mission| %>
+        <tr>
+          <td><%= mission.name %></td>
+          <td><%= link_to "編集", edit_admin_mission_path(mission) %></td>
+          <td><%=link_to "削除", admin_mission_path(mission), method: :delete%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>大タスクを登録してください</p>
+<% end %>
+

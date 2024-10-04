@@ -1,0 +1,12 @@
+<%= form_with(model: [:admin, user, project], local: true) do |form| %>
+
+  <div>
+    <%= form.label :name, "プロジェクト名" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.submit "登録" %>
+  </div>
+
+<% end %>

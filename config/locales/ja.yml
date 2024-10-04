@@ -1,0 +1,40 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+      project: "プロジェクト"
+      mission: "大タスク"
+      task: "小タスク"
+    attributes:
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+        admin: "管理者"
+        position: "ポジション"
+      project:
+        name: "プロジェクト名"
+        user_id: "ユーザーID"
+      mission:
+        name: "大タスク名"
+      project_mission:
+        project_id: "プロジェクトID"
+        mission_id: "大タスクID"
+        status: "ステータス"
+      task:
+        name: "小タスク名"
+      project_mission_task:
+        project_mission_id: "プロジェクト-大タスクID"
+        task_id: "小タスクID"
+        status: "ステータス"
+        role: "役割"
+    errors:
+      messages:
+        blank: "入力必須です"
+        taken: "重複しています"
+        too_short: "入力が短すぎます"
+        confirmation: "入力が一致していません"
+        greater_than: "1か2でないといけません"
+        less_than: "1か2でないといけません"
+   

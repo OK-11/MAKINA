@@ -1,0 +1,19 @@
+<div class="user_form">
+
+  <div class="user_form_h1">
+    <h1>ユーザ編集</h1>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row form">
+      <%= render "form", user: @user %>
+    </div>
+  </div>
+
+  <div class="back_btn">
+    <%= link_to "戻る", users_path, class: "btn btn-light" %>
+  </div>
+
+</div>
+
+

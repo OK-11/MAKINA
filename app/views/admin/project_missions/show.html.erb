@@ -1,0 +1,33 @@
+<h1><%= @mission.name %></h1>
+
+<%= link_to "小タスクを紐づける", new_admin_user_project_project_mission_project_mission_task_path(@user,@project,@project_mission) %>
+
+
+<% if @project_mission_tasks.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>順番</th>
+        <th>小タスク名</th>
+        <th>ステータス</th>
+        <th>役割</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @project_mission_tasks.each do |project_mission_task| %>
+        <tr>
+          <td><%= project_mission_task.position %></td>
+          <td><%= project_mission_task.task.name %></td>
+          <td><%= project_mission_task.status %><%= render "changeStatusForm", user: @user, project: @project, project_mission: @project_mission, project_mission_task: project_mission_task %></td>
+          <td><%= project_mission_task.role %><%= render "changeRoleForm", user: @user, project: @project, project_mission: @project_mission, project_mission_task: project_mission_task %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <!-- Note: @project_missions[0]に特に意味はない、project_missionでdestroyを動かしたいだけ -->
+    <%= link_to "紐付けを解く", admin_user_project_project_mission_project_mission_task_path(@user,@project,@project_mission,@project_mission_tasks[0]), method: :delete, data: { confirm: "本当に解いてもよろしいですか？" } %>
+  </table>
+<% else %>
+  <p>小タスクが紐付いていません</p>
+<% end %>
+
+<%= link_to "戻る", admin_user_project_path(@user,@project) %>

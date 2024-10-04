@@ -1,3 +1,24 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  root 'sessions#new'
+
+  namespace :admin do
+    resources :users do
+      resources :projects do
+        resources :project_missions do
+          resources :project_mission_tasks
+        end
+      end
+    end
+    resources :missions
+    resources :tasks
+  end
+
+  resource :sessions
+  resources :users
+  resources :project_missions
+
+  get '/api/polling_mission' => 'api/pollings#polling_mission'
+  get '/api/polling_task/:id' => 'api/pollings#polling_task'
+
 end

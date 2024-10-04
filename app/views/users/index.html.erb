@@ -1,0 +1,41 @@
+<div class="user_index">
+
+  <% if @project.present? %>
+
+    <%= render "dashboard", project: @project, user: @user, project_missions: @project_missions, dashboard_status: @dashboard_status %>
+
+    <div class="main">
+      <div class="square_line">
+        <% @project_missions.each do |project_mission| %>
+          <%= link_to project_mission_path(project_mission) do %>
+            <% if project_mission.status == 1 %>
+              <div class="mission_square_opne mission_square">
+                <div><%= project_mission.mission.name %><%= project_mission.status %></div>
+              </div>
+            <% else %>
+              <div class="mission_square_close mission_square">
+                <div><%= project_mission.mission.name %><%= project_mission.status %></div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+        <div class="only_line"></div>
+      </div>
+    </div>
+
+  
+
+
+    <div><%= link_to "ユーザ編集", edit_user_path(@user) %></div>
+
+    
+
+  <% else %>
+    <p>まきなはよしろよ〜〜〜〜〜〜</p>
+  <% end %>
+
+</div>
+
+
+
+

@@ -1,0 +1,19 @@
+<h1>小タスクを紐づける</h1>
+
+<%= form_with(model: [:admin, @user, @project, @project_mission, @project_mission_task], local: true) do |form| %>
+
+  <% @tasks.each do |task| %>
+
+    <label class="task_label_position"></label>
+    <input type="checkbox" value="<%=task.id%>" class="task_check_box">
+    <%= form.label task.name %>
+  
+  <% end %>
+
+  <%= form.hidden_field :positions, id: "task_position_field_id" %>
+
+  <%= form.submit "紐づける" %>
+
+<% end %>
+
+<%= link_to "戻る", admin_user_project_project_mission_path(@user,@project,@project_mission) %>

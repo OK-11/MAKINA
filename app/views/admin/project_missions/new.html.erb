@@ -1,0 +1,25 @@
+<h1>大タスクを紐づける</h1>
+
+<%= form_with(model: [:admin, @user, @project, @project_mission], local: true) do |form| %>
+
+  <% @missions.each do |mission| %>
+
+    <label class="mission_label_order"></label>
+    <input type="checkbox" value="<%=mission.id%>" class="mission_check_box">
+    <%= form.label mission.name %>
+    
+  <% end %>
+
+  <%= form.hidden_field :orders, id: "mission_order_field_id" %>
+
+  <%= form.submit "紐づける" %>
+
+<% end %>
+
+<%= link_to "戻る", admin_user_project_path(@user,@project) %>
+
+
+
+
+
+

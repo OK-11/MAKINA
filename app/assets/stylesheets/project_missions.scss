@@ -1,0 +1,66 @@
+// Place all the styles related to the project_missions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.project_mission_show {
+  width: 100vw;
+  height: 100vh;
+}
+
+.project_mission_show .project_mission_show_h {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.project_mission_show .main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.project_mission_show .main .square_line {
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.project_mission_show .main .square_line .task_square_opne {
+  width: 130px;
+  height: 200px;
+  border: 2px solid black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: 0.3s;
+  background-color: white;
+}
+
+.project_mission_show .main .square_line .task_square_close {
+  width: 130px;
+  height: 200px;
+  border: 1px solid gray;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: 0.3s;
+  background-color: white;
+  color: gray;
+}
+
+.project_mission_show .main .square_line .only_line {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  border-bottom: 2px solid black;
+  z-index: -1;
+}
+
+
+
+

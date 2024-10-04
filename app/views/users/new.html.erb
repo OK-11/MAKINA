@@ -1,0 +1,17 @@
+<div class="user_form">
+
+  <div class="user_form_h1">
+    <h1>新規登録</h1>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row form">
+      <%= render "form", user: @user %>
+    </div>
+  </div>
+
+  <div class="back_btn">
+    <%= link_to "ログイン", new_sessions_path, class: "btn btn-light" %>
+  </div>
+
+</div>

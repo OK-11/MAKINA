@@ -1,0 +1,11 @@
+<%= form_with(model: [:admin, user, project, project_mission, project_mission_task], local: true) do |form| %>
+  <%= form.hidden_field :status %>
+  <% if project_mission_task.role == 1 %>
+    <%= form.hidden_field :role, value: 2 %>
+  <% elsif project_mission_task.role == 2 %>
+    <%= form.hidden_field :role, value: 3 %>
+  <% else %>
+    <%= form.hidden_field :role, value: 1 %>
+  <% end %>
+  <%= form.submit "change" %>
+<% end %>
