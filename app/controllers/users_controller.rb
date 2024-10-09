@@ -9,13 +9,9 @@ class UsersController < ApplicationController
       @dashboard_status = 0
 
       if @project.project_missions.where(status: 1).present?
-        if @project.project_missions.where(status: 1).order(:position).first.project_mission_tasks.where(status: 1).present?
-          @project_mission = @project.project_missions.where(status: 1).order(:position).first
-          @project_mission_tasks = @project.project_missions.where(status: 1).order(:position).first.project_mission_tasks.where(status: 1).order(:position)
-          @i = 1
-        end
+        @project_mission = @project.project_missions.where(status: 1).order(:position).first
       else
-        @project_mission_tasks = nil
+        @project_mission = @project.project_missions.where(status: 1).order(:position).last
       end
 
     else

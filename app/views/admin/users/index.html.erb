@@ -1,11 +1,148 @@
-<h1>管理者トップページ</h1>
+<div class="admin_user_index">
+  <div class="user_select">
+    <div class="user_type">
+      <button type="button" class="user_type_btn btn" id="user_type_user_btn"><%= image_tag "user_client.png", alt: "クライアントアイコン"%>ユーザー</button>
+      <button type="button" class="user_type_btn btn" id="user_type_worker_btn"><%= image_tag "user_worker.png", alt: "ワーカーアイコン"%>ワーカー</button>
+      <button type="button" class="user_type_btn btn" id="user_type_admin_btn"><%= image_tag "user_admin.png", alt: "管理者アイコン"%>管理者</button>
+      <%= link_to admin_missions_path do %>
+        <button type="button" class="user_type_btn btn mt-4"><%= image_tag "mission.png", alt: "大タスクアイコン"%>大タスク</button>
+      <% end %>
+      <%= link_to admin_tasks_path do %>
+        <button type="button" class="user_type_btn btn"><%= image_tag "task.png", alt: "小タスクアイコン"%>小タスク</button>
+      <% end %>
+    </div>
+    <div class="user_logout">
+      <div class="user_logout_border"></div>
+      <%= link_to sessions_path, method: :delete do %>
+        <button type="button" class="user_type_btn btn"><%= image_tag "login.png", alt: "ログアウトアイコン"%>ログアウト</button>
+      <% end %>
+    </div>
+  </div>
+  <div class="space"></div>
 
+  <div class="user_main">
+    <div class="user_type">
+      
+      <div class="user_type_user user_type_open" id="user_type_user">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ユーザー名</th>
+              <th scope="col">メールアドレス</th>
+              <th scope="col">プロジェクト名</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <% if user.projects.present?  %>
+                  <% user.projects.each do |project| %>
+                    <td><%= link_to project.name , admin_user_project_path(user,project) %></td>
+                  <% end %>
+                <% else %>
+                  <td>プロジェクトなし</td>
+                <% end %>
+                <td><button type="button" class="user-btn btn">︙</button></td>
+              </tr>
+              <tr class="user_edit_tr user_edit_tr_close">
+                <td><%= link_to "ユーザー編集", edit_admin_user_path(user) %></td>
+                <td><%= link_to "ユーザー削除", admin_user_path(user), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } %></td>
+                <td><%= link_to "プロジェクト登録", new_admin_user_project_path(user) %></td>
+                <td></td>
+              </tr>
+              
+            <% end %>
+          </tbody>
+        </table>
+        <div class="paginate_frame">
+          <%= paginate @users, theme: 'bootstrap-4' %>
+        </div>
+      </div>
+
+      <div class="user_type_worker" id="user_type_worker">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ワーカー名</th>
+              <th scope="col">メールアドレス</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @workers.each do |worker| %>
+
+              <tr>
+                <td><%= worker.name %></td>
+                <td><%= worker.email %></td>
+                <td><button type="button" class="user-btn btn">︙</button></td>
+              </tr>
+              <tr class="user_edit_tr user_edit_tr_close">
+                <td><%= link_to "ユーザー編集", edit_admin_user_path(worker) %></td>
+                <td><%= link_to "ユーザー削除", admin_user_path(worker), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } %></td>
+                <td></td>
+              </tr>
+              
+            <% end %>
+          </tbody>
+        </table>
+        <div class="paginate_frame">
+          <%= paginate @workers, theme: 'bootstrap-4' %>
+        </div>
+      </div>
+
+      <div class="user_type_admin" id="user_type_admin">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">管理者名</th>
+              <th scope="col">メールアドレス</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @admins.each do |admin| %>
+
+              <tr>
+                <td><%= admin.name %></td>
+                <td><%= admin.email %></td>
+                <td><button type="button" class="user-btn btn">︙</button></td>
+              </tr>
+              <tr class="user_edit_tr user_edit_tr_close">
+                <td><%= link_to "ユーザー編集", edit_admin_user_path(admin) %></td>
+                <td><%= link_to "ユーザー削除", admin_user_path(admin), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } %></td>
+                <td></td>
+              </tr>
+
+            <% end %>
+          </tbody>
+        </table>
+        <div class="paginate_frame">
+          <%= paginate @admins, theme: 'bootstrap-4' %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- 
 <%= link_to "ユーザ作成(管理者/ワーカー)", new_admin_user_path %>
 <%= link_to "大タスク一覧" , admin_missions_path %>
 <%= link_to "小タスク一覧" , admin_tasks_path %>
 
 
-<!-- ボタン押したら「ユーザ」「管理者」「ワーカ」で切り替わるとええかも -->
+
 
 <h2>ユーザー</h2>
 <table>
@@ -81,5 +218,8 @@
     <% end %>
   </tbody>
 </table>
+
+
+-->
 
 

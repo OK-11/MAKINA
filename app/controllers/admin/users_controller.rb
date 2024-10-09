@@ -2,9 +2,9 @@ class Admin::UsersController < ApplicationController
   
   #admin側でユーザを作る時は、positionは勝手に2になるようにする
   def index
-    @users = User.where(position: 1)
-    @admins = User.where(admin: true)
-    @workers = User.where(position: 2, admin: false)
+    @users = User.where(position: 1).order(updated_at: :desc).page(params[:page]).per(10)
+    @admins = User.where(admin: true).order(updated_at: :desc).page(params[:page]).per(10)
+    @workers = User.where(position: 2, admin: false).order(updated_at: :desc).page(params[:page]).per(10)
   end
 
   def new

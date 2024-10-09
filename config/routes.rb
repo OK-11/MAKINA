@@ -20,5 +20,6 @@ Rails.application.routes.draw do
 
   get '/api/polling_mission' => 'api/pollings#polling_mission'
   get '/api/polling_task/:id' => 'api/pollings#polling_task'
+  get '/api/carousel_mission' => 'api/pollings#carousel_mission'
 
 end

@@ -2,6 +2,8 @@
 
   <% if @project.present? %>
 
+    <%= render "nav" %>
+
     <%= render "dashboard", project: @project, user: @user, project_missions: @project_missions, dashboard_status: @dashboard_status %>
 
     <div class="main">
@@ -23,12 +25,12 @@
       </div>
     </div>
 
-  
 
+    <div class="w-100">
+      <div id="carousel3d-frame"></div>
+    </div>
 
-    <div><%= link_to "ユーザ編集", edit_user_path(@user) %></div>
-
-    
+    <div>a</div>
 
   <% else %>
     <p>まきなはよしろよ〜〜〜〜〜〜</p>

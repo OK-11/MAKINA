@@ -1,5 +1,7 @@
 <div class="project_mission_show">
 
+  <%= render "users/nav" %>
+
   <%= render "users/dashboard", project: @project, user: @user, project_missions: @project_missions, dashboard_status: @dashboard_status %>
 
   
@@ -28,7 +30,6 @@
     </div>
   </div>
 
-  <%= link_to "戻る", users_path %>
 </div>
         
       

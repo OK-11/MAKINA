@@ -1,0 +1,12 @@
+<button type="button" class="user_nav_open_btn btn" id="user_nav_btn">MAKINA</button>
+
+<div class="user_nav_close" id="user_nav">
+  <button type="button" id="user_nav_close_btn">
+    <div class="user_nav_body">
+      <div><%= link_to "MAKINA", users_path %></div>
+      <div><%= link_to "ユーザ編集", edit_user_path(@user) %></div>
+      <div><%= link_to "ログアウト", sessions_path, method: :delete %></div>
+      <div><%= link_to "管理者トップページ", admin_users_path %></div>
+    </div>
+  </button>
+</div>
