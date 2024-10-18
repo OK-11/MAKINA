@@ -1,12 +1,18 @@
 <button type="button" class="user_nav_open_btn btn" id="user_nav_btn">MAKINA</button>
 
+
 <div class="user_nav_close" id="user_nav">
   <button type="button" id="user_nav_close_btn">
-    <div class="user_nav_body">
-      <div><%= link_to "MAKINA", users_path %></div>
-      <div><%= link_to "ユーザ編集", edit_user_path(@user) %></div>
-      <div><%= link_to "ログアウト", sessions_path, method: :delete %></div>
-      <div><%= link_to "管理者トップページ", admin_users_path %></div>
+    <div class="user_nav_frame">
+      <div class="user_nav_body">
+          <div>
+            <%= link_to users_path do %><div class="user_nav_row"><%= image_tag "home_icon.png", alt: "ホームアイコン"%>MAKINA</div><% end %>
+            <%= link_to edit_user_path(@user) do %><div class="user_nav_row"><%= image_tag "user_client.png", alt: "ユーザ編集アイコン"%>ユーザー編集</div><% end %>
+          </div>
+          <div class="logout">
+            <%= link_to sessions_path, method: :delete do %><div class="user_nav_row"><%= image_tag "login.png", alt: "ログアウトアイコン"%>ログアウト</div><% end %>
+          </div>
+        </div>
     </div>
   </button>
 </div>

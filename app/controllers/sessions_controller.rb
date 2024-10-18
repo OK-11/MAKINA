@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+  skip_before_action :user_login?, only: [:new, :create]
+  before_action :user_logout?, only: [:new, :create]
   def new
   end
 

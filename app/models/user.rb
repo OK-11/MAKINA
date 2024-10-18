@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   has_many :projects, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :project_mission_tasks, through: :comments
+  has_many :notices, dependent: :destroy
+  has_many :comments, through: :notices
 
   has_secure_password
 

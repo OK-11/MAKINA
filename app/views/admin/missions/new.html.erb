@@ -1,5 +1,10 @@
-<h1>大タスク作成ページ</h1>
+<div class="admin_form">
+  <h1>大タスク作成</h1>
+  <div class="w-25 mt-5">
+    <%= render "form", mission: @mission %>
+    <div class="w-100 d-flex justify-content-end mt-2">
+      <%= link_to "大タスク一覧", admin_missions_path %>
+    </div>
+  </div>
+</div>
 
-<%= render "form", mission: @mission %>
-
-<%= link_to "戻る", admin_missions_path %>

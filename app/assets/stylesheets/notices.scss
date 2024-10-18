@@ -1,0 +1,36 @@
+// Place all the styles related to the notices controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.user_notice {
+  position: fixed;
+  top: 0;
+  right: 0;
+  min-width: 300px;
+  z-index: 100;
+}
+
+.user_notice .notice_square {
+  width: 100%;
+  min-height: 80px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  margin-top: 10px;
+  transition: 0.3s;
+  padding: 5px;
+}
+
+.user_notice .notice_square a {
+  padding: 0;
+  width: 60px;
+}
+
+.user_notice .notice_square a:hover {
+  padding: 0;
+  background-color: gray;
+}

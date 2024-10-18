@@ -1,5 +1,9 @@
-<h1>プロジェクト編集ページ</h1>
-
-<%= render "form", user: @user, project: @project %>
-
-<%= link_to "戻る", admin_user_project_path(@user, @project) %>
+<div class="admin_form">
+  <h1>プロジェクト編集</h1>
+  <div class="w-25 mt-5">
+    <%= render "form", user: @user, project: @project %>
+    <div class="w-100 d-flex justify-content-end mt-2">
+      <%= link_to "戻る", admin_user_project_path(@user, @project) %>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 class Admin::UsersController < ApplicationController
+
+  before_action :admin_user_login?
   
-  #admin側でユーザを作る時は、positionは勝手に2になるようにする
   def index
     @users = User.where(position: 1).order(updated_at: :desc).page(params[:page]).per(10)
     @admins = User.where(admin: true).order(updated_at: :desc).page(params[:page]).per(10)

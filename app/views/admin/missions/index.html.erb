@@ -1,27 +1,48 @@
-
-<h1>大タスク一覧</h1>
-
-<%= link_to "大タスク作成" , new_admin_mission_path %>
-
-
-<% if @missions.present? %>
-  <table>
-    <thead>
-      <tr>
-        <th>大タスク名</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @missions.each do |mission| %>
-        <tr>
-          <td><%= mission.name %></td>
-          <td><%= link_to "編集", edit_admin_mission_path(mission) %></td>
-          <td><%=link_to "削除", admin_mission_path(mission), method: :delete%></td>
-        </tr>
+<div class="admin_mission_index">
+  <nav>
+    <div class="nav_1">
+      <%= link_to admin_users_path do %>
+        <button type="button" class="nav_button btn"><%= image_tag "home_icon.png", alt: "ホームアイコン"%>MAKINA</button>
       <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>大タスクを登録してください</p>
-<% end %>
+      <%= link_to new_admin_mission_path do %>
+        <button type="button" class="nav_button btn mt-4"><%= image_tag "mission.png", alt: "大タスクアイコン"%>大タスク生成</button>
+      <% end %>
+    </div>
+    <div class="nav_2">
+      <div class="nav_2_border"></div>
+        <%= link_to admin_users_path do %>
+          <button type="button" class="nav_button btn"><%= image_tag "back_icon.png", alt: "戻るアイコン"%>戻る</button>
+        <% end %>
+      </div>
+  </nav>
+
+  <div class="space"></div>
+
+  <main>
+    <div class="main_frame">
+      <h1>大タスク一覧</h1>
+      <%= flash[:alert] %>
+
+      <div class="square_line">
+        <% @missions.each do |mission| %>
+          <div class="mission_square">
+            <div><%= mission.name %></div>
+            <div class="d-flex">
+              <div><%= link_to "編集", edit_admin_mission_path(mission) %></div>
+              <div>&nbsp;/&nbsp;</div>
+              <div><%=link_to "削除", admin_mission_path(mission), method: :delete%></div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </main>
+</div>
+
+
+
+
+
+
+
 

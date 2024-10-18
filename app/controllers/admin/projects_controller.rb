@@ -1,4 +1,6 @@
 class Admin::ProjectsController < ApplicationController
+
+  before_action :admin_user_login?
   def new
     @user = User.find(params[:user_id])
     @project = Project.new

@@ -1,22 +1,50 @@
-<h1>大タスクを紐づける</h1>
+<div class="admin_project_mission_new">
+  <nav>
+    <div class="nav_1">
+      <%= link_to admin_users_path do %>
+        <button type="button" class="nav_button btn"><%= image_tag "home_icon.png", alt: "ホームアイコン"%>MAKINA</button>
+      <% end %>
+      <%= link_to new_admin_mission_path do %>
+        <button type="button" class="nav_button btn mt-4"><%= image_tag "mission.png", alt: "大タスクアイコン"%>大タスク生成</button>
+      <% end %>
+    </div>
+    <div class="nav_2">
+      <div class="nav_2_border"></div>
+        <%= link_to admin_user_project_path(@user,@project) do %>
+          <button type="button" class="nav_button btn"><%= image_tag "back_icon.png", alt: "戻るアイコン"%>戻る</button>
+        <% end %>
+      </div>
+  </nav>
 
-<%= form_with(model: [:admin, @user, @project, @project_mission], local: true) do |form| %>
+  <div class="space"></div>
 
-  <% @missions.each do |mission| %>
+  <main>
+    <div class="main_frame">
+        <h1>大タスクの紐付け</h1>
+        
+        <%= form_with(model: [:admin, @user, @project, @project_mission], local: true) do |form| %>
 
-    <label class="mission_label_order"></label>
-    <input type="checkbox" value="<%=mission.id%>" class="mission_check_box">
-    <%= form.label mission.name %>
-    
-  <% end %>
+          <div class="square_line">
+            <% @missions.each do |mission| %>
+              <div class="mission_square">
+                <h1 class="mission_label_order"></h1>
+                <%= form.label mission.name %>
+                <input type="checkbox" value="<%=mission.id%>" class="mission_check_box">
+              </div>
+            <% end %>
+          </div>
 
-  <%= form.hidden_field :orders, id: "mission_order_field_id" %>
+          <div class="w-100 d-flex justify-content-center">
+            <%= form.hidden_field :orders, id: "mission_order_field_id" %>
+            <%= form.submit "紐付ける", class: "btn btn-outline-dark" %>
+          </div>
+      
+        <% end %>
+      </div>
+  </main>
+</div>
 
-  <%= form.submit "紐づける" %>
 
-<% end %>
-
-<%= link_to "戻る", admin_user_project_path(@user,@project) %>
 
 
 

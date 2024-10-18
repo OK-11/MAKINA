@@ -10,15 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_09_27_161548) do
+ActiveRecord::Schema.define(version: 2024_10_11_021605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body", null: false
+    t.bigint "user_id", null: false
+    t.bigint "project_mission_task_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_mission_task_id"], name: "index_comments_on_project_mission_task_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "missions", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "notices", force: :cascade do |t|
+    t.bigint "comment_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "status", default: 1, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["comment_id"], name: "index_notices_on_comment_id"
+    t.index ["user_id"], name: "index_notices_on_user_id"
   end
 
   create_table "project_mission_tasks", force: :cascade do |t|
@@ -69,6 +89,10 @@ ActiveRecord::Schema.define(version: 2024_09_27_161548) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "comments", "project_mission_tasks"
+  add_foreign_key "comments", "users"
+  add_foreign_key "notices", "comments"
+  add_foreign_key "notices", "users"
   add_foreign_key "project_mission_tasks", "project_missions"
   add_foreign_key "project_mission_tasks", "tasks"
   add_foreign_key "project_missions", "missions"

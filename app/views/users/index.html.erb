@@ -7,21 +7,27 @@
     <%= render "dashboard", project: @project, user: @user, project_missions: @project_missions, dashboard_status: @dashboard_status %>
 
     <div class="main">
-      <div class="square_line">
-        <% @project_missions.each do |project_mission| %>
-          <%= link_to project_mission_path(project_mission) do %>
-            <% if project_mission.status == 1 %>
-              <div class="mission_square_opne mission_square">
-                <div><%= project_mission.mission.name %><%= project_mission.status %></div>
-              </div>
-            <% else %>
-              <div class="mission_square_close mission_square">
-                <div><%= project_mission.mission.name %><%= project_mission.status %></div>
-              </div>
+      <div class="user_index_main_h">
+        <h1>大タスク</h1>
+      </div>
+  
+      <div class="square_frame">
+        <div class="only_line"></div>
+        <div class="square_line">
+          <% @project_missions.each do |project_mission| %>
+            <%= link_to project_mission_path(project_mission) do %>
+              <% if project_mission.status == 1 %>
+                <div class="mission_square_opne mission_square">
+                  <div><%= project_mission.mission.name %></div>
+                </div>
+              <% else %>
+                <div class="mission_square_close mission_square">
+                  <div><%= project_mission.mission.name %></div>
+                </div>
+              <% end %>
             <% end %>
           <% end %>
-        <% end %>
-        <div class="only_line"></div>
+        </div>
       </div>
     </div>
 
@@ -30,14 +36,14 @@
       <div id="carousel3d-frame"></div>
     </div>
 
-    <div>a</div>
 
   <% else %>
-    <p>まきなはよしろよ〜〜〜〜〜〜</p>
+    <div class="w-100 h-100 d-flex flex-column align-items-center mt-5">
+      <h1 class="mt-5">プロジェクトが登録されていません。</h1>
+      <p class="mt-2">お手数ですが、管理者へご連絡ください。</p>
+    </div>
   <% end %>
 
 </div>
-
-
 
 

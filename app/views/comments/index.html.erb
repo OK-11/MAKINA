@@ -1,0 +1,52 @@
+<div class="comment_index">
+  
+  <% if @user.position == 1 %>
+    <%= render "users/nav" %>
+  <% else %>
+    <%= link_to admin_users_path do %>
+      <button type="button" class="admin_user_nav_open_btn btn">MAKINA</button>
+    <% end %>
+  <% end %>
+
+  <div class="comment_index_h1">
+    <h1>chat room</h1>
+  </div>
+
+  <div class="comment_index_h2">
+    <div class="comment_index_h2_custom">
+      <h3 class="comment_index_h2_mission"><%= @project_mission.mission.name %></h3>
+      <h3 class="comment_index_h2_arrow">>>></h3>
+      <h3 class="comment_index_h2_task"><%= @project_mission_task.task.name %></h3>
+    </div>
+  </div>
+
+  <div class="chat_frame">
+    <% @comments.each do |comment| %>
+      <% if comment.user.position == 1 %>
+        <div class="chat_left">
+          <div class="chat_body_left">
+            <p><%= comment.user.name %></p>
+            <p><%= comment.body %></p>
+          </div>
+        </div>
+      <% else %>
+        <div class="chat_right">
+          <div class="chat_body_right">
+            <p><%= comment.user.name %></p>
+            <p><%= comment.body %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="chat_form">
+    <%= form_with(model: [@project_mission_task, @comment], local: true) do |form| %>
+      <%= form.text_area :body , class:"form-control", placeholder:"コメント", id:"floatingTextarea" %>
+      <div class="d-flex justify-content-center mt-2">
+        <%= form.submit "投稿", class: "btn btn-dark" %>
+      </div> 
+    <% end %>
+  </div>
+</div>
+

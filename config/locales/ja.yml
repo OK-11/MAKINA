@@ -31,10 +31,10 @@ ja:
         role: "役割"
     errors:
       messages:
-        blank: "入力必須です"
-        taken: "重複しています"
-        too_short: "入力が短すぎます"
-        confirmation: "入力が一致していません"
-        greater_than: "1か2でないといけません"
-        less_than: "1か2でないといけません"
+        blank: ": 入力必須です"
+        taken: ": 重複しています"
+        too_short: ": 入力が短すぎます"
+        confirmation: ": 入力が一致していません"
+        greater_than: ": 1か2でないといけません"
+        less_than: ": 1か2でないといけません"
    

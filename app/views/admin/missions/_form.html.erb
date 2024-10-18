@@ -1,12 +1,22 @@
 <%= form_with(model: [:admin, mission], local: true) do |form| %>
 
-  <div>
-    <%= form.label :name, "大タスク名" %>
-    <%= form.text_field :name %>
-  </div>
+  <% if mission.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% mission.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div>
-    <%= form.submit "登録" %>
+    <%= form.label :name, "大タスク名", class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="w-100 d-flex justify-content-center mt-3">
+    <%= form.submit "登録", class: "btn btn-outline-dark" %>
   </div>
 
 <% end %>

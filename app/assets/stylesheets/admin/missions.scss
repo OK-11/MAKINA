@@ -1,3 +1,121 @@
 // Place all the styles related to the admin::missions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.admin_mission_index {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: relative;
+}
+
+.admin_mission_index nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15%;
+  height: 100vh;
+  border-right: 2px solid black;
+}
+
+.admin_mission_index nav .nav_1 {
+  width: 100%;
+  height: 85%;
+  padding-top: 50px;
+}
+
+.admin_mission_index nav .nav_2 {
+  width: 100%;
+  height: 15%;
+}
+
+.admin_mission_index nav a {
+  text-decoration: none;
+  color: black;
+}
+
+.admin_mission_index nav .nav_button {
+  width: 100%;
+  height: 45px;
+  text-align: start;
+  padding: 0;
+  padding-left: 15px;
+}
+
+.admin_mission_index nav .nav_button:hover {
+  width: 100%;
+  height: 45px;
+  text-align: start;
+  padding: 0;
+  padding-left: 15px;
+  background-color: gray;
+}
+
+.admin_mission_index nav img {
+  height: 22px;
+  margin-right: 10px;
+  margin-bottom: 3px;
+}
+
+.admin_mission_index nav .nav_2 .nav_2_border {
+  width: 70%;
+  margin-left: 15%;
+  border-bottom: 1px solid black;
+  margin-bottom: 30px;
+}
+
+
+.admin_mission_index .space {
+  width: 15%;
+  height: 100vh;
+}
+
+
+.admin_mission_index main {
+  width: 85%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-y: scroll;
+}
+
+.admin_mission_index main .main_frame {
+  width: 80%;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin_mission_index main .main_frame .square_line {
+  width: 100%;
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.admin_mission_index main .main_frame .square_line .mission_square {
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.admin_mission_index main .main_frame .square_line .mission_square:hover {
+  background-color: #FFCC00;
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.admin_mission_index main .main_frame .square_line .mission_square:last-child {
+  margin-bottom: 100px;
+}

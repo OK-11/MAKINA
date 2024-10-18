@@ -9,7 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import { project_mission_set } from "./project_mission";
 import { project_mission_task_set } from "./project_mission_task";
-import { polling_mission, polling_task, user_nav_button, admin_user_btn } from "./user";
+import { polling_mission, polling_task, user_nav_button, admin_user_btn, user_notice } from "./user";
 
 Rails.start()
 Turbolinks.start()
@@ -20,14 +20,14 @@ ActiveStorage.start()
 
 
 document.addEventListener('turbolinks:load', function() {
+  user_notice();
   if (window.location.pathname.includes("/admin/")) {
-    if (window.location.pathname.includes("/users")) {
-      admin_user_btn();
-    }
-    else if (window.location.pathname.includes("/project_missions/new")) {
-      project_mission_set();
-    }else if (window.location.pathname.includes("/project_mission_tasks/new")) {
+    if (window.location.pathname.includes("/project_mission_tasks/new")) {
       project_mission_task_set();
+    }else if (window.location.pathname.includes("/project_missions/new")) {
+      project_mission_set();
+    }else if (window.location.pathname.includes("users") && /\/users\/.+/.test(window.location.pathname) === false) {
+      admin_user_btn();
     }
   }else if (window.location.pathname.includes("/users")) {
     polling_mission();
@@ -35,8 +35,12 @@ document.addEventListener('turbolinks:load', function() {
   }else if (window.location.pathname.includes("/project_missions")) {
     polling_task();
     user_nav_button();
+  }else if (window.location.pathname.includes("/comments")) {
+    user_nav_button();
   }
 });
+
+
 
 
 

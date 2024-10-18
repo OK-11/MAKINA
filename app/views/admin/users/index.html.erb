@@ -1,7 +1,8 @@
 <div class="admin_user_index">
+  
   <div class="user_select">
     <div class="user_type">
-      <button type="button" class="user_type_btn btn" id="user_type_user_btn"><%= image_tag "user_client.png", alt: "クライアントアイコン"%>ユーザー</button>
+      <button type="button" class="user_type_btn btn" id="user_type_user_btn"><%= image_tag "user_client.png", alt: "クライアントアイコン"%>クライアント</button>
       <button type="button" class="user_type_btn btn" id="user_type_worker_btn"><%= image_tag "user_worker.png", alt: "ワーカーアイコン"%>ワーカー</button>
       <button type="button" class="user_type_btn btn" id="user_type_admin_btn"><%= image_tag "user_admin.png", alt: "管理者アイコン"%>管理者</button>
       <%= link_to admin_missions_path do %>
@@ -9,6 +10,9 @@
       <% end %>
       <%= link_to admin_tasks_path do %>
         <button type="button" class="user_type_btn btn"><%= image_tag "task.png", alt: "小タスクアイコン"%>小タスク</button>
+      <% end %>
+      <%= link_to new_admin_user_path do %>
+        <button type="button" class="user_type_btn btn mt-4"><%= image_tag "change_icon.png", alt: "ユーザー作成アイコン"%>ユーザー作成</button>
       <% end %>
     </div>
     <div class="user_logout">
@@ -27,7 +31,7 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">ユーザー名</th>
+              <th scope="col">クライアント名</th>
               <th scope="col">メールアドレス</th>
               <th scope="col">プロジェクト名</th>
               <th scope="col"></th>
@@ -133,93 +137,5 @@
 
 
 
-
-
-
-<!-- 
-<%= link_to "ユーザ作成(管理者/ワーカー)", new_admin_user_path %>
-<%= link_to "大タスク一覧" , admin_missions_path %>
-<%= link_to "小タスク一覧" , admin_tasks_path %>
-
-
-
-
-<h2>ユーザー</h2>
-<table>
-  <thead>
-    <tr>
-      <th>名前</th>
-      <th>メールアドレス</th>
-      <th>プロジェクト名</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-
-        <% if user.projects.present?  %>
-          <% user.projects.each do |project| %>
-
-            <td><%= link_to project.name , admin_user_project_path(user,project) %></td>
-
-          <% end %>
-        <% else %>
-          <td>登録なし</td>
-        <% end %>
-        
-        <td><%= link_to "プロジェクト登録", new_admin_user_project_path(user) %></td>
-        <td><%= link_to "ユーザー編集", edit_admin_user_path(user) %></td>
-        <td><%= link_to "ユーザー削除", admin_user_path(user), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-<h2>管理者</h2>
-<table>
-  <thead>
-    <tr>
-      <th>名前</th>
-      <th>メールアドレス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @admins.each do |admin| %>
-      <tr>
-        <td><%= admin.name %></td>
-        <td><%= admin.email %></td>
-        <td><%= link_to "編集", edit_admin_user_path(admin) %></td>
-        <td><%= link_to "削除", admin_user_path(admin), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-<h2>ワーカー</h2>
-<table>
-  <thead>
-    <tr>
-      <th>名前</th>
-      <th>メールアドレス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @workers.each do |worker| %>
-      <tr>
-        <td><%= worker.name %></td>
-        <td><%= worker.email %></td>
-        <td><%= link_to "編集", edit_admin_user_path(worker) %></td>
-        <td><%= link_to "削除", admin_user_path(worker), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
--->
 
 

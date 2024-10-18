@@ -22,6 +22,14 @@ class ProjectMission < ApplicationRecord
     end
   end
 
+  def status_display
+    if self.status == 1
+      return "open"
+    elsif self.status == 2
+      return "close"
+    end
+  end
+
 
 end
 

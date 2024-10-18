@@ -1,34 +1,62 @@
-<h1><%= @project.name %></h1>
+<div class="admin_project_show">
 
-<%= link_to "プロジェクト編集", edit_admin_user_project_path(@user,@project) %>
-<%= link_to "プロジェクト削除", admin_user_project_path(@user,@project), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } %>
-<%= link_to "大タスクを紐付ける", new_admin_user_project_project_mission_path(@user,@project) %>
-
-
-<% if @project_missions.present? %>
-  <table>
-    <thead>
-      <tr>
-        <th>順番</th>
-        <th>大タスク名</th>
-        <th>ステータス</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @project_missions.each do |project_mission| %>
-        <tr>
-          <td><%= project_mission.position %></td>
-          <td><%= link_to project_mission.mission.name , admin_user_project_project_mission_path(@user,@project,project_mission)%></td>
-          <td><%= project_mission.status %><%= render "changeStatusForm", user: @user, project: @project, project_mission: project_mission %></td>
-        </tr>
+  <nav>
+    <div class="nav_1">
+      <%= link_to admin_users_path do %>
+        <button type="button" class="nav_button btn"><%= image_tag "home_icon.png", alt: "ホームアイコン"%>MAKINA</button>
       <% end %>
-    </tbody>
-    <!-- Note: @project_missions[0]に特に意味はない、project_missionでdestroyを動かしたいだけ -->
-    <%= link_to "紐付けを解く", admin_user_project_project_mission_path(@user,@project,@project_missions[0]), method: :delete, data: { confirm: "本当に解いてもよろしいですか？" } %>
-  </table>
-<% else %>
-  <p>大タスクが紐付いていません</p>
-<% end %>
+      <%= link_to edit_admin_user_project_path(@user,@project) do %>
+        <button type="button" class="nav_button btn mt-4"><%= image_tag "change_icon.png", alt: "プロジェクト編集アイコン"%>プロジェクト編集</button>
+      <% end %>
+      <%= link_to admin_user_project_path(@user,@project), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" } do %>
+        <button type="button" class="nav_button btn"><%= image_tag "trash_icon.png", alt: "プロジェクト削除アイコン"%>プロジェクト削除</button>
+      <% end %>
+      <%= link_to new_admin_user_project_project_mission_path(@user,@project) do %>
+        <button type="button" class="nav_button btn mt-4"><%= image_tag "string_icon.png", alt: "大タスク紐付けアイコン"%>大タスクの紐付け</button>
+      <% end %>
+      <% if @project_missions.present? %>
+        <!--Note: @project_missions[0]に特に意味はない、project_missionでdestroyを動かしたいだけ-->
+        <%= link_to admin_user_project_project_mission_path(@user,@project,@project_missions[0]), method: :delete, data: { confirm: "本当に解いてもよろしいですか？" } do %>
+          <button type="button" class="nav_button btn"><%= image_tag "cut_icon.png", alt: "カットアイコン"%>紐付けを解く</button>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="nav_2">
+      <div class="nav_2_border"></div>
+      <%= link_to admin_users_path do %>
+        <button type="button" class="nav_button btn"><%= image_tag "back_icon.png", alt: "戻るアイコン"%>戻る</button>
+      <% end %>
+    </div>
+  </nav>
 
-  
-  
+  <main>
+    <% if @project_missions.present? %>
+      <div class="main_frame">
+        <h1><%= @project.name %>・大タスク</h1>
+        <div class="only_line"></div>
+        <div class="square_line">
+          <% @project_missions.each do |project_mission| %>
+            <% if project_mission.status == 1 %>
+              <div class="mission_square">
+                <div><%= link_to project_mission.mission.name, admin_user_project_project_mission_path(@user,@project,project_mission) %></div>
+                <div class="mt-3"><%= project_mission.status_display %></div>
+                <div><%= render "changeStatusForm", user: @user, project: @project, project_mission: project_mission %></div>
+              </div>
+            <% else %>
+              <div class="mission_square mission_square_close">
+                <div><%= link_to project_mission.mission.name, admin_user_project_project_mission_path(@user,@project,project_mission) %></div>
+                <div class="mt-3"><%= project_mission.status_display %></div>
+                <div><%= render "changeStatusForm", user: @user, project: @project, project_mission: project_mission %></div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% else %>
+      <h1 class="mt-5">大タスクが紐付いていません！</h1>
+    <% end %>
+  </main>
+
+</div>
+
+

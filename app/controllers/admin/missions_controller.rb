@@ -1,4 +1,7 @@
 class Admin::MissionsController < ApplicationController
+
+  before_action :admin_user_login?
+  
   def index
     @missions = Mission.all
   end

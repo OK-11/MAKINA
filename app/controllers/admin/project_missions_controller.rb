@@ -1,4 +1,6 @@
 class Admin::ProjectMissionsController < ApplicationController
+
+  before_action :admin_user_login?
   
   def new
     @user = User.find_by(id: params[:user_id])

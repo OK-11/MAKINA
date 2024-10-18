@@ -1,6 +1,16 @@
 <div class="col-9 col-md-3 no-padding">
   <%= form_with(model: user, local: true) do |form| %>
 
+    <% if user.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <div>
       <%= form.label :name, "名前", class: "form-label" %>
       <%= form.text_field :name, class: "form-control" %>

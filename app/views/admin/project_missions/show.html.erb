@@ -1,33 +1,78 @@
-<h1><%= @mission.name %></h1>
-
-<%= link_to "小タスクを紐づける", new_admin_user_project_project_mission_project_mission_task_path(@user,@project,@project_mission) %>
-
-
-<% if @project_mission_tasks.present? %>
-  <table>
-    <thead>
-      <tr>
-        <th>順番</th>
-        <th>小タスク名</th>
-        <th>ステータス</th>
-        <th>役割</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @project_mission_tasks.each do |project_mission_task| %>
-        <tr>
-          <td><%= project_mission_task.position %></td>
-          <td><%= project_mission_task.task.name %></td>
-          <td><%= project_mission_task.status %><%= render "changeStatusForm", user: @user, project: @project, project_mission: @project_mission, project_mission_task: project_mission_task %></td>
-          <td><%= project_mission_task.role %><%= render "changeRoleForm", user: @user, project: @project, project_mission: @project_mission, project_mission_task: project_mission_task %></td>
-        </tr>
+<div class="admin_project_mission_show">
+  <nav>
+    <div class="nav_1">
+      <%= link_to admin_users_path do %>
+        <button type="button" class="nav_button btn"><%= image_tag "home_icon.png", alt: "ホームアイコン"%>MAKINA</button>
       <% end %>
-    </tbody>
-    <!-- Note: @project_missions[0]に特に意味はない、project_missionでdestroyを動かしたいだけ -->
-    <%= link_to "紐付けを解く", admin_user_project_project_mission_project_mission_task_path(@user,@project,@project_mission,@project_mission_tasks[0]), method: :delete, data: { confirm: "本当に解いてもよろしいですか？" } %>
-  </table>
-<% else %>
-  <p>小タスクが紐付いていません</p>
-<% end %>
+      <%= link_to new_admin_user_project_project_mission_project_mission_task_path(@user,@project,@project_mission) do %>
+        <button type="button" class="nav_button btn mt-4"><%= image_tag "string_icon.png", alt: "小タスク紐付けアイコン"%>小タスクの紐付け</button>
+      <% end %>
+      <% if @project_mission_tasks.present? %>
+        <!--Note: @project_mission_tasks[0]に特に意味はない、project_mission_taskでdestroyを動かしたいだけ-->
+        <%= link_to admin_user_project_project_mission_project_mission_task_path(@user,@project,@project_mission,@project_mission_tasks[0]), method: :delete, data: { confirm: "本当に解いてもよろしいですか？" } do %>
+          <button type="button" class="nav_button btn"><%= image_tag "cut_icon.png", alt: "カットアイコン"%>紐付けを解く</button>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="nav_2">
+      <div class="nav_2_border"></div>
+      <%= link_to admin_user_project_path(@user,@project) do %>
+        <button type="button" class="nav_button btn"><%= image_tag "back_icon.png", alt: "戻るアイコン"%>戻る</button>
+      <% end %>
+    </div>
+  </nav>
 
-<%= link_to "戻る", admin_user_project_path(@user,@project) %>
+  <main>
+    <% if @project_mission_tasks.present? %>
+      <div class="main_frame">
+        <h1><%= @mission.name %>・小タスク</h1>
+        <div class="only_line"></div>
+        <div class="square_line">
+          <% @project_mission_tasks.each do |project_mission_task| %>
+            <% if project_mission_task.status == 1 %>
+              <div class="task_square">
+                <div><%= project_mission_task.task.name %></div>
+                <div class="d-flex flex-column align-items-center mt-1 mb-1">
+                  <div><%= project_mission_task.status_display %></div>
+                  <div><%= render "changeStatusForm", user: @user, project: @project, project_mission: @project_mission, project_mission_task: project_mission_task %></div>
+                </div>
+                <div class="d-flex flex-column align-items-center mb-3">
+                  <div><%= project_mission_task.role_display %></div>
+                  <div><%= render "changeRoleForm", user: @user, project: @project, project_mission: @project_mission, project_mission_task: project_mission_task %></div>
+                </div>
+                <%= link_to project_mission_task_comments_path(project_mission_task) do%>
+                  <button type="button">chat room</button>
+                <% end %>
+              </div>
+            <% else %>
+              <div class="task_square task_square_close">
+                <div><%= project_mission_task.task.name %></div>
+                <div class="d-flex flex-column align-items-center mt-1 mb-1">
+                  <div><%= project_mission_task.status_display %></div>
+                  <div><%= render "changeStatusForm", user: @user, project: @project, project_mission: @project_mission, project_mission_task: project_mission_task %></div>
+                </div>
+                <div class="d-flex flex-column align-items-center mb-3">
+                  <div><%= project_mission_task.role_display %></div>
+                  <div><%= render "changeRoleForm", user: @user, project: @project, project_mission: @project_mission, project_mission_task: project_mission_task %></div>
+                </div>
+                <%= link_to project_mission_task_comments_path(project_mission_task) do%>
+                  <button type="button">chat room</button>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% else %>
+      <h1 class="mt-5">小タスクが紐付いていません！</h1>
+    <% end %>
+  </main>
+</div>
+
+
+
+
+
+
+
+

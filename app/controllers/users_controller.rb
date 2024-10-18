@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
 
+  skip_before_action :user_login?, only: [:new, :create]
+  before_action :user_logout?, only: [:new, :create]
+  before_action :current_user?, only: [:edit, :update]
+  before_action :not_admin_user?, only: [:index,:edit, :update]
+
+
   def index
     @user = User.find_by(id: session[:user_id])
     if @user.projects.present?
@@ -36,11 +42,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by(id: params[:id])
   end
 
   def update
-    @user = User.find_by(id: params[:id])
     @user.update(user_params)
     @user.email = @user.email.downcase if @user.email.present?
     if @user.save
@@ -57,4 +61,14 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
+
+  def current_user?
+    if params[:id].to_i == session[:user_id]
+      @user = User.find_by(id: params[:id])
+    else
+      redirect_to edit_user_path(session[:user_id])
+    end
+  end
+
+
 end

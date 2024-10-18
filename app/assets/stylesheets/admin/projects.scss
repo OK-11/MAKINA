@@ -1,3 +1,146 @@
 // Place all the styles related to the admin::projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.admin_project_show {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.admin_project_show nav {
+  width: 15%;
+  height: 100vh;
+  border-right: 2px solid black;
+}
+
+.admin_project_show nav .nav_1 {
+  width: 100%;
+  height: 85%;
+  padding-top: 50px;
+}
+
+.admin_project_show nav .nav_2 {
+  width: 100%;
+  height: 15%;
+}
+
+.admin_project_show nav a {
+  text-decoration: none;
+  color: black;
+}
+
+.admin_project_show nav .nav_button {
+  width: 100%;
+  height: 45px;
+  text-align: start;
+  padding: 0;
+  padding-left: 15px;
+}
+
+.admin_project_show nav .nav_button:hover {
+  width: 100%;
+  height: 45px;
+  text-align: start;
+  padding: 0;
+  padding-left: 15px;
+  background-color: gray;
+}
+
+.admin_project_show nav img {
+  height: 22px;
+  margin-right: 10px;
+  margin-bottom: 3px;
+}
+
+.admin_project_show nav .nav_2 .nav_2_border {
+  width: 70%;
+  margin-left: 15%;
+  border-bottom: 1px solid black;
+  margin-bottom: 30px;
+}
+
+
+
+
+
+
+.admin_project_show main {
+  width: 85%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.admin_project_show main .main_frame {
+  width: 80%;
+  height: 100%;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.admin_project_show main .main_frame .only_line {
+  position: absolute;
+  top: calc(50px + 38px + 50px + 120px);
+  left: 0;
+  width: 300%;
+  border-bottom: 2px solid black;
+  z-index: -1;
+}
+
+.admin_project_show main .main_frame .square_line {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  overflow: scroll;
+}
+
+.admin_project_show main .main_frame .square_line .mission_square {
+  width: 180px;
+  height: 240px;
+  border: 2px solid black;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 6px;
+  flex-shrink: 0;
+  margin-right: 20px;
+}
+
+.admin_project_show main .main_frame .square_line .mission_square .btn {
+  width: 80px;
+  height: 30px;
+  padding: 0;
+  margin-top: 3px;
+}
+
+.admin_project_show main .main_frame .square_line .mission_square_close {
+  color: gray;
+  border: 1px solid gray;
+}
+
+.admin_project_show main .main_frame .square_line .mission_square_close .btn {
+  color: gray;
+  border: 1px solid gray;
+}
+
+.admin_project_show main .main_frame .square_line .mission_square_close a {
+  color: gray;
+}
+
+.admin_project_show main .main_frame .square_line .mission_square:last-child {
+  margin-right: 0px;
+}
+
+
+
+

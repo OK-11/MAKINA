@@ -9,7 +9,6 @@ export function project_mission_task_set(){
         task_positions.push(task_check_boxs[i].value);
         task_position_field_id.value = task_positions.join(",");
         task_label_positions[i].innerHTML = task_positions.indexOf(task_check_boxs[i].value) + 1;
-        console.log(task_positions);
       }else{
         task_positions.splice(task_positions.indexOf(task_check_boxs[i].value), 1);
         task_position_field_id.value = task_positions.join(",");
@@ -19,7 +18,6 @@ export function project_mission_task_set(){
             task_label_positions[j].innerHTML = task_positions.indexOf(task_check_boxs[j].value) + 1;
           }
         }
-        console.log(task_positions);
       }
     });
   }

@@ -9,7 +9,6 @@ export function project_mission_set(){
         mission_orders.push(mission_check_boxs[i].value);
         mission_order_field_id.value = mission_orders.join(",");
         mission_label_orders[i].innerHTML = mission_orders.indexOf(mission_check_boxs[i].value) + 1;
-        console.log(mission_orders);
       }else{
         mission_orders.splice(mission_orders.indexOf(mission_check_boxs[i].value), 1);
         mission_order_field_id.value = mission_orders.join(",");
@@ -19,7 +18,6 @@ export function project_mission_set(){
             mission_label_orders[j].innerHTML = mission_orders.indexOf(mission_check_boxs[j].value) + 1;
           }
         }
-        console.log(mission_orders);
       }
     });
   }

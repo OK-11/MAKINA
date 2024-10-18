@@ -5,28 +5,40 @@
   <%= render "users/dashboard", project: @project, user: @user, project_missions: @project_missions, dashboard_status: @dashboard_status %>
 
   
-  <div class="project_mission_show_h">
-    <div class="w-75">
-      <h3><%= @mission.name %></h3>
-    </div>
-  </div>
-  
   <div class="main">
-    <div class="square_line">
-      <% @project_mission_tasks.each do |project_mission_task| %>
-         <% if project_mission_task.status == 1 %>
-          <div class="task_square_opne task_square">
-            <div><%= project_mission_task.task.name%></div>
-            <div>(<%= project_mission_task.role %>)</div>
-          </div>
-        <% else %>
-          <div class="task_square_close task_square">
-            <div><%= project_mission_task.task.name%></div>
-            <div>(<%= project_mission_task.role %>)</div>
-          </div>
-        <% end %>
-      <% end %>
+    <div class="project_mission_show_main_h">
+      <h1>小タスク</h1>
+    </div>
+
+    <div class="square_frame">
       <div class="only_line"></div>
+      <div class="square_line">
+        <% @project_mission_tasks.each do |project_mission_task| %>
+          <% if project_mission_task.status == 1 %>
+            <div class="task_square_opne task_square">
+              <h5><%= project_mission_task.task.name%></h5>
+              <div class="task_square_role">
+                <div>作業者:</div>
+                <div><%= project_mission_task.role_display %></div>
+              </div>
+              <%= link_to project_mission_task_comments_path(project_mission_task) do%>
+                <button type="button">chat room</button>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="task_square_close task_square">
+              <h5><%= project_mission_task.task.name%></h5>
+              <div class="task_square_role">
+                <div>作業者:</div>
+                <div><%= project_mission_task.role_display %></div>
+              </div>
+              <%= link_to project_mission_task_comments_path(project_mission_task) do%>
+                <button type="button">chat room</button>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 

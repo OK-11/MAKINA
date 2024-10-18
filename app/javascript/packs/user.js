@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Carousel3d from '../Carousel3d.vue';
+import UserNotice from '../userNotice.vue';
 
 
 export function polling_mission(){
@@ -35,7 +36,9 @@ export function polling_mission(){
               taskNames: taskName_array,
               taskStatus: taskStatus_array,
               missionName: data.mission_name,
-              currentSlide: data.current_slide
+              currentSlide: data.current_slide,
+              projectMissionTaskIds: data.project_mission_task_ids,
+              projectMissionTaskRoles: data.project_mission_task_roles
             }
           })
         }).$mount(carousel3dFrame)
@@ -50,7 +53,7 @@ export function polling_mission(){
           task_items[i].classList.add("task-close");
         }
       }
-      setTimeout(polling_mission, 20000)
+      setTimeout(polling_mission, 30000)
     })
     .catch(error => console.error('Polling error:', error))
 }
@@ -70,7 +73,7 @@ export function polling_task(){
           task_squares[i].classList.add("task_square_close");
         }
       }
-      setTimeout(polling_task, 20000)
+      setTimeout(polling_task, 30000)
     })
     .catch(error => console.error('Polling error:', error))
 }
@@ -94,7 +97,7 @@ export function user_nav_button(){
 
 
 
-
+/* admin */
 
 
 
@@ -130,6 +133,31 @@ export function admin_user_btn(){
     userTypeWorker.classList.remove("user_type_open");
     userTypeAdmin.classList.add("user_type_open");
   })
+}
+
+export function user_notice(){
+  fetch('/api/polling_user_notice')
+    .then(response => response.json())
+    .then(data => {
+      if(data.notices === true){
+        const userNotice = document.getElementById('user_notice')
+        if (userNotice) {
+          new Vue({
+            render: h => h(UserNotice, {
+              props: {
+                indexs: data.indexs,
+                from_user_names: data.from_user_names,
+                mission_names: data.mission_names,
+                task_names: data.task_names,
+                notice_ids: data.notice_ids
+              }
+            })
+          }).$mount(userNotice)
+        }
+      }
+      setTimeout(user_notice, 20000)
+    })
+    .catch(error => console.error('Polling error:', error))
 }
 
 
